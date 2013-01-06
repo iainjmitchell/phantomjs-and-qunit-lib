@@ -7,7 +7,7 @@ def qunit(*args, &block)
 	task = Proc.new{ 
 		p "Qunit starting..."
 		block.call(configuration)
-		sh "#{configuration.phantom_exe} #{configuration.qunit_runner} #{configuration.test_directory}/**/*.html"
+		sh "#{configuration.phantom_exe} #{configuration.qunit_runner} #{configuration.test_directory}/*.html"
 		p "Qunit run completed"
 	};
 	Rake::Task.define_task(*args, &task)
