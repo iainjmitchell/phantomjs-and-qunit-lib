@@ -18,7 +18,8 @@ class Qunit_Wrapper
 		@block.call(config)		
 		Dir.glob("#{config.test_directory}/*.html") do |test_file|			
 			puts "testing  #{test_file}"	
-			system "\"#{config.phantom_exe}\" \"#{config.qunit_runner}\" \"#{test_file}\""  		
+			passed = system "\"#{config.phantom_exe}\" \"#{config.qunit_runner}\" \"#{test_file}\""  		
+			raise "Qunit test failed: #{test_file}" unless passed
 		end						
 	end
 end
